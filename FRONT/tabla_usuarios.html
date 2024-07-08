@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/tabla_usuarios.css">
+    <title>Ratón Gamer - App Admin</title>
+</head>
+<body>
+
+    <header>
+        
+    </header>
+
+    <main>
+
+        <section class="container">
+            <h1 id="titulo">TABLA USUARIOS</h1>
+
+            <div id="app" >
+
+                <div id="cont-bt-registrar">
+                <p id="añadir">Añadir usuario:</p>
+                <!-- Botón Nuevo -->
+                <a class="nuevo" href="templates/ingresar_usuario.html">REGISTRAR</a>
+                </div>
+
+                <section v-if="error">Lo sentimos se produjo un error</section>
+                <section v-else>
+                    <section v-if="cargando">
+                        <p>Cargando .....</p>
+
+                    </section>
+
+                    <section v-else>
+                        
+                        <div >
+                            <table class="tabla">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Nombre de usuario</th>
+                                        <th>Correo electrónico</th>
+                                        <th>Contraseña</th>
+                                        <th>Sexo</th>
+                                        <th>País</th>
+                                        <th>Imagen</th>
+                                        <th>Acciones</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                    <tr v-for="usuario in usuarios">
+                                        <td >{{usuario.id}}</td>
+                                        <td>{{usuario.nombre}}</td>
+                                        <td>{{usuario.apellido}}</td>
+                                        <td>{{usuario.nombre_usuario}}</td>
+                                        <td>{{usuario.correo_electronico}}</td>
+                                        <td>{{usuario.contraseña}}</td>
+                                        <td>{{usuario.sexo}}</td>
+                                        <td>{{usuario.pais}}</td>
+                                        <td>
+                                            <img :src="usuario.imagen" alt="">
+                                        </td>
+                                        <td>
+                                            <button type="button"  v-on:click="eliminar(usuario.id)">ELIMINAR</button>
+                                        </td>
+                                        <td>
+                                            <a class="boton" :href="'templates/editar_usuario.html?id='+ usuario.id+'&nombre=' +usuario.nombre+ '&apellido='+usuario.apellido+ '&nombre_usuario='+usuario.nombre_usuario+ '&correo_electronico='+usuario.correo_electronico+ '&contraseña='+usuario.contraseña+ '&sexo='+usuario.sexo+ '&pais='+usuario.pais+ '&imagen='+usuario.imagen">EDITAR</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </section>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer></footer>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="static/js/tabla_usuarios.js"></script>
+    <script src="static/js/header_tabla.js"></script>
+</body>
+</html>
